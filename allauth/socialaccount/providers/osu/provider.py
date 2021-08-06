@@ -39,7 +39,6 @@ class OsuProvider(OAuth2Provider):
 
     def extract_common_fields(self, data):
         return dict(
-            email=data.get("email"),
             username=data.get("username"),
             name=data.get("username"),
         )
