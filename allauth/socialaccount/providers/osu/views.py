@@ -10,8 +10,8 @@ from allauth.socialaccount.providers.oauth2.views import (
 
 class OsuOAuth2Adapter(OAuth2Adapter):
     provider_id = OsuProvider.id
-    access_token_url = "https://osu.ppy.sh/api/v2/oauth/token"
-    authorize_url = "https://osu.ppy.sh/api/v2/oauth/authorize"
+    access_token_url = "https://osu.ppy.sh/oauth/token"
+    authorize_url = "https://osu.ppy.sh/oauth/authorize"
     profile_url = "https://osu.ppy.sh/api/v2/me"
 
     def complete_login(self, request, app, token, **kwargs):
