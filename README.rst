@@ -1,4 +1,13 @@
 ==========================
+Note about this fork
+==========================
+
+This fork is add osu! OAuth from osu! API v2 and add a custom function to bind with
+Rūrusetto_ login system.
+
+.. _Rūrusetto: https://github.com/Rurusetto/rurusetto
+
+==========================
 Welcome to django-allauth!
 ==========================
 
