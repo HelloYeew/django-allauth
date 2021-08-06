@@ -25,7 +25,7 @@ class OsuAccount(ProviderAccount):
 
 class OsuProvider(OAuth2Provider):
     id = "osu"
-    name = "Osu"
+    name = "osu!"
     account_class = OsuAccount
 
     def get_default_scope(self):
