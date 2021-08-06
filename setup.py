@@ -115,15 +115,13 @@ long_description = io.open("README.rst", encoding="utf-8").read()
 version = __import__("allauth").__version__
 
 METADATA = dict(
-    name="django-allauth",
+    name="rurusetto-django-allauth",
     version=version,
-    author="Raymond Penners",
-    author_email="raymond.penners@intenct.nl",
-    description="Integrated set of Django applications addressing"
-    " authentication, registration, account management as well as"
-    " 3rd party (social) account authentication.",
+    author="Phawit Pornwattanakul",
+    author_email="me@helloyeew.dev",
+    description="Django allauth library with osu! OAuth support for using in backend of Rūrusetto.",
     long_description=long_description,
-    url="http://github.com/pennersr/django-allauth",
+    url="https://github.com/Rurusetto/rurusetto-django-allauth",
     keywords="django auth account social openid twitter facebook oauth" " registration",
     tests_require=[],
     install_requires=[
