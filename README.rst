@@ -2,8 +2,7 @@
 Note about this fork
 ==========================
 
-This fork is add osu! OAuth from osu! API v2 and add a custom function to bind with
-Rūrusetto_ login system.
+This fork add support on osu! OAuth from osu! API v2, first I intended to make it only Rūrusetto_ login system, but if you have a Django project that need the osu! account login support you can use this too.
 
 .. _Rūrusetto: https://github.com/Rurusetto/rurusetto
 
