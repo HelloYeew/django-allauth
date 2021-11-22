@@ -119,6 +119,8 @@ Supported Providers
 
 - Frontier (OAuth2)
 
+- Gitea (OAuth2)
+
 - Github (OAuth2)
 
 - GitLab (OAuth2)
@@ -144,6 +146,8 @@ Supported Providers
 - Mail.Ru (OAuth2)
 
 - MailChimp (OAuth2)
+
+- MediaWiki (OAuth2)
 
 - Meetup (OAuth2)
 
