@@ -122,7 +122,7 @@ METADATA = dict(
     description="Django allauth library with osu! OAuth support for using in backend of Django website that need osu! OAuth support.",
     long_description=long_description,
     url="https://github.com/Rurusetto/rurusetto-django-allauth",
-    keywords="django auth account social openid twitter facebook oauth" " registration",
+    keywords="django auth account social openid twitter facebook oauth osu" " registration",
     tests_require=[],
     install_requires=[
         "Django >= 2.0",
@@ -154,6 +154,7 @@ METADATA = dict(
         "Framework :: Django :: 3.0",
         "Framework :: Django :: 3.1",
         "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.0",
     ],
     packages=find_packages(exclude=["example"]),
     package_data=package_data,
