@@ -1,5 +1,6 @@
 SECRET_KEY = "psst"
 SITE_ID = 1
+ALLOWED_HOSTS = ("*",)
 
 DATABASES = {
     "default": {
@@ -98,6 +99,7 @@ INSTALLED_APPS = (
     "allauth.socialaccount.providers.gitlab",
     "allauth.socialaccount.providers.globus",
     "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.gumroad",
     "allauth.socialaccount.providers.hubic",
     "allauth.socialaccount.providers.instagram",
     "allauth.socialaccount.providers.jupyterhub",
@@ -188,3 +190,7 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.Argon2PasswordHasher",
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
 ]
+
+
+ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 0
+ACCOUNT_RATE_LIMITS = {}

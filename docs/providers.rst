@@ -1000,6 +1000,16 @@ without involving the user's browser). When unspecified, Google defaults
 to ``online``.
 
 
+Gumroad
+---------
+
+App registration (get your key and secret here)
+    https://help.gumroad.com/article/280-create-application-api
+
+Development callback URL
+    http://localhost:8000/accounts/instagram/login/callback/
+
+
 Instagram
 ---------
 
@@ -1059,7 +1069,7 @@ KEYCLOAK_URL_ALT:
 
     This can be used when working with Docker on localhost, with a frontend and a backend hosted in different containers.
 
-KEYCLOAK_REAML:
+KEYCLOAK_REALM:
     The name of the ``realm`` you want to use.
 
 Example:
@@ -1267,7 +1277,7 @@ Microsoft Graph API is the gateway to connect to mail, calendar, contacts,
 documents, directory, devices and more.
 
 Apps can be registered (for consumer key and secret) here
-    https://apps.dev.microsoft.com/
+    https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
 
 By default, `common` (`organizations` and `consumers`) tenancy is configured
 for the login. To restrict it, change the `tenant` setting as shown below.
