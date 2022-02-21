@@ -122,7 +122,14 @@ METADATA = dict(
     description="Django allauth library with osu! OAuth support for using in backend of Django website that need osu! OAuth support.",
     long_description=long_description,
     url="https://github.com/Rurusetto/rurusetto-django-allauth",
-    keywords="django auth account social openid twitter facebook oauth osu" " registration",
+    keywords="django auth account social openid twitter facebook oauth osu registration",
+    project_urls={
+        "Documentation": "https://django-allauth.readthedocs.io/en/latest/",
+        "Changelog": "https://github.com/pennersr/django-allauth/blob/master/ChangeLog.rst",
+        "Source": "http://github.com/pennersr/django-allauth",
+        "Tracker": "https://github.com/pennersr/django-allauth/issues",
+        "Donate": "https://github.com/sponsors/pennersr",
+    },
     tests_require=[],
     install_requires=[
         "Django >= 2.0",

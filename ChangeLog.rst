@@ -1,10 +1,26 @@
-0.48.0 (unreleased)
+0.49.0 (unreleased)
 *******************
 
 Note worthy changes
 -------------------
 
-- New translation: Bulgarian.
+- Fixed ``SignupForm`` setting username and email attributes on the ``User`` class
+  instead of a dummy user instance.
+
+
+Backwards incompatible changes
+------------------------------
+
+- Changed naming of ``internal_reset_url_key`` attribute in
+  ``allauth.account.views.PasswordResetFromKeyView`` to ``reset_url_key``.
+
+
+0.48.0 (2022-02-03)
+*******************
+
+Note worthy changes
+-------------------
+- New translations: Catalan, Bulgarian.
 
 - Introduced a new setting ``ACCOUNT_PREVENT_ENUMERATION`` that controls whether
   or not information is revealed about whether or not a user account exists.
@@ -17,7 +33,7 @@ Note worthy changes
 
 - Added builtin rate limitting (see ``ACCOUNT_RATE_LIMITS``).
 
-- Added ``reset_url_token`` attribute in
+- Added ``internal_reset_url_key`` attribute in
   ``allauth.account.views.PasswordResetFromKeyView`` which allows specifying
   a token parameter displayed as a component of password reset URLs.
 
@@ -27,6 +43,8 @@ Note worthy changes
   installed. Therefore, enabling or disabling ``sites`` is not something you can
   do on the fly.
 
+- The ``facebook`` provider no longer raises ``ImproperlyConfigured``
+  within ``{% providers_media_js %}`` when it is not configured.
 
 
 Backwards incompatible changes
