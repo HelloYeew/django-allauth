@@ -71,6 +71,8 @@ Supported Providers
 
 - CILogon (OAuth2)
 
+- Clever (OAuth2)
+
 - Coinbase (OAuth2)
 
 - Dataporten (OAuth2)
@@ -78,6 +80,8 @@ Supported Providers
 - Daum (OAuth2)
 
 - Digital Ocean (OAuth2)
+
+- DingTalk (OAuth2)
 
 - Discord (OAuth2)
 
@@ -135,6 +139,8 @@ Supported Providers
 
 - Hubic (OAuth2)
 
+- Hubspot (OAuth2)
+
 - Instagram (OAuth2)
 
 - JupyterHub (OAuth2)
@@ -171,6 +177,8 @@ Supported Providers
 
 - OpenId
 
+- OpenID Connect (OAuth2)
+
 - OpenStreetMap (OAuth)
 
 - ORCID (OAuth2)
@@ -182,6 +190,8 @@ Supported Providers
 - Persona
 
 - Pinterest (OAuth2)
+
+- Pocket (OAuth)
 
 - QuickBooks (OAuth2)
 
@@ -196,6 +206,8 @@ Supported Providers
 - Shopify (OAuth2)
 
 - Slack (OAuth2)
+
+- Snapchat (OAuth2)
 
 - SoundCloud (OAuth2)
 
@@ -223,11 +235,15 @@ Supported Providers
 
 - Twitter (OAuth)
 
+- Twitter (OAuth2)
+
 - Untappd (OAuth2)
 
 - Vimeo (OAuth, OAuth2)
 
 - VK (OAuth2)
+
+- Wahoo (OAuth2)
 
 - Weibo (OAuth2)
 

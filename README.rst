@@ -23,6 +23,9 @@ Welcome to django-allauth!
 .. image:: https://pennersr.github.io/img/bitcoin-badge.svg
    :target: https://blockchain.info/address/1AJXuBMPHkaDCNX2rwAy34bGgs7hmrePEr
 
+.. image:: https://badgen.net/liberapay/receives/pennersr
+   :target: https://en.liberapay.com/pennersr
+
 .. image:: https://img.shields.io/badge/code%20style-pep8-green.svg
    :target: https://www.python.org/dev/peps/pep-0008/
 
@@ -55,24 +58,25 @@ Rationale
 =========
 
 Most existing Django apps that address the problem of social
-authentication focus on just that. You typically need to integrate
-another app in order to support authentication via a local
-account.
+authentication unfortunately focus only on one dimension - the social. 
+Most developers end up integrating another app in order to support authentication 
+flows that are locally generated. 
 
-This approach separates the worlds of local and social
-authentication. However, there are common scenarios to be dealt with
-in both worlds. For example, an e-mail address passed along by an
-OpenID provider is not guaranteed to be verified. So, before hooking
-an OpenID account up to a local account the e-mail address must be
-verified. So, e-mail verification needs to be present in both worlds.
+This approach creates a development gap between local and social
+authentication flows. It has remained an issue inspite numerous common 
+scenarios that both require. For example, an e-mail address passed along by an
+OpenID provider may not be verified. Therefore, prior to hooking up
+an OpenID account to a local account the e-mail address must be
+verified. This essentially is one of many use cases that mandate e-mail 
+verification to be present in both worlds.
 
-Integrating both worlds is quite a tedious process. It is definitely
-not a matter of simply adding one social authentication app, and one
+Integrating both is a humongous and tedious process. It is not as
+simple as adding one social authentication app, and one
 local account registration app to your ``INSTALLED_APPS`` list.
 
-This is the reason this project got started -- to offer a fully
+This inadequacy is the reason for this project's existence  -- to offer a fully
 integrated authentication app that allows for both local and social
-authentication, with flows that just work.
+authentication, with flows that just work, beautifully !
 
 
 Commercial Support

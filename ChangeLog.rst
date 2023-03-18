@@ -1,3 +1,61 @@
+0.53.0 (2023-03-16)
+*******************
+
+Note worthy changes
+-------------------
+
+- You can now override the use of the ``UserTokenForm`` over at the
+  ``PasswordResetFromKeyView`` by configuring ``ACCOUNT_FORMS["user_token"]`` to
+  allow the change of the password reset token generator.
+
+- The Google API URLs are now configurable via the provider setting which
+  enables use-cases such as overriding the endpoint during integration tests to
+  talk to a mocked version of the API.
+
+
+0.52.0 (2022-12-29)
+*******************
+
+Note worthy changes
+-------------------
+
+- Officially support Django 4.1.
+
+- New providers: OpenID Connect, Twitter (OAuth2), Wahoo, DingTalk.
+
+- Introduced a new provider setting ``OAUTH_PKCE_ENABLED`` that enables the
+  PKCE-enhanced Authorization Code Flow for OAuth 2.0 providers.
+
+- When ``ACCOUNT_PREVENT_ENUMERATION`` is turned on, enumeration is now also
+  prevented during signup, provided you are using mandatory email
+  verification. There is a new email template
+  (`templates/account/email/acccount_already_exists_message.txt`) that will be
+  used in this scenario.
+
+- Updated URLs of Google's endpoints to the latest version; removed a redundant
+  ``userinfo`` call.
+
+- Fixed Pinterest provider on new api version.
+
+
+0.51.0 (2022-06-07)
+*******************
+
+Note worthy changes
+-------------------
+
+- New providers: Snapchat, Hubspot, Pocket, Clever.
+
+
+Security notice
+---------------
+
+The reset password form is protected by rate limits. There is a limit per IP,
+and per email. In previous versions, the latter rate limit could be bypassed by
+changing the casing of the email address. Note that in that case, the former
+rate limit would still kick in.
+
+
 0.50.0 (2022-03-25)
 *******************
 
@@ -55,7 +113,7 @@ Note worthy changes
   HMAC based email confirmations. In earlier versions, users could trigger email
   verification mails without any limits.
 
-- Added builtin rate limitting (see ``ACCOUNT_RATE_LIMITS``).
+- Added builtin rate limiting (see ``ACCOUNT_RATE_LIMITS``).
 
 - Added ``internal_reset_url_key`` attribute in
   ``allauth.account.views.PasswordResetFromKeyView`` which allows specifying
@@ -77,7 +135,7 @@ Backwards incompatible changes
 - The newly introduced ``ACCOUNT_PREVENT_ENUMERATION`` defaults to ``True`` impacting
   the current behavior of the password reset flow.
 
-- The newly introduced rate limitting is by default turned on. You will need to provide
+- The newly introduced rate limiting is by default turned on. You will need to provide
   a ``429.html`` template.
 
 - The default of ``SOCIALACCOUNT_STORE_TOKENS`` has been changed to
@@ -660,7 +718,7 @@ Backwards incompatible changes
 
 - Dropped support for Django 1.6
 
-- In order to accomodate for Django's password validation, the
+- In order to accommodate for Django's password validation, the
   ``clean_password`` method of the adapter now takes an (optional)
   ``user`` parameter as its second argument.
 
@@ -753,7 +811,7 @@ Backwards incompatible changes
 
 - Increased ``SocialApp`` key/secret/token sizes to 191, decreased
   ``SocialAccount.uid`` size to 191. The latter was done in order to
-  accomodate for MySQL in combination with utf8mb4 and contraints on
+  accommodate for MySQL in combination with utf8mb4 and constraints on
   ``uid``. Note that ``uid`` is used to store OpenID URLs, which can
   theoretically be longer than 191 characters, although in practice
   this does not seem to be the case. In case you really need to
@@ -889,7 +947,7 @@ Note worthy changes
   browser plugin like Disconnect.me that blocks it, login falls back
   to the regular non JS handshake.
 
-- ``is_safe_url`` can now be overriden
+- ``is_safe_url`` can now be overridden
 
 - Facebook: The Graph API version is now configurable via
   ``SOCIALACCOUNT_PROVIDERS``.
@@ -1258,7 +1316,7 @@ Backwards incompatible changes
 - The ``{% provider_login_url %}`` tag now takes an optional process
   parameter that indicates how to process the social login. As a
   result, if you include the template
-  ``socialaccount/snippets/provider_list.html`` from your own overriden
+  ``socialaccount/snippets/provider_list.html`` from your own overridden
   ``socialaccount/connections.html`` template, you now need to pass
   along the process parameter as follows:
   ``{% include "socialaccount/snippets/provider_list.html" with process="connect" %}``.
@@ -1326,7 +1384,7 @@ None
 Note worthy changes
 -------------------
 
-- Cleaning of ``username`` can now be overriden via
+- Cleaning of ``username`` can now be overridden via
   ``DefaultAccountAdapter.clean_username``
 
 - Fixed potential error (``assert``) when connecting social
@@ -1465,14 +1523,14 @@ Note worthy changes
 - google: support for Google's ``verified_email`` flag to determine
   whether or not to send confirmation e-mails.
 
-- Fábio Santos contributed a Portugese translation, thanks!
+- Fábio Santos contributed a Portuguese translation, thanks!
 
 - socialaccount: Added support for Stack Exchange.
 
 - socialaccount: Added ``get_social_accounts`` template tag.
 
 - account: Default URL to redirect to after login can now be
-  overriden via the adapter, both for login and e-mail confirmation
+  overridden via the adapter, both for login and e-mail confirmation
   redirects.
 
 
@@ -1668,7 +1726,7 @@ Note worthy changes
 
 - socialaccount: When signing up, user.first/last_name where
   always taken from the provider signup data, even when a custom
-  signup form was in place that offered user inputs for editting
+  signup form was in place that offered user inputs for editing
   these fields. Fixed.
 
 
@@ -1773,7 +1831,7 @@ Note worthy changes
   used for additional questions to ask during signup.
 
 - account: ``is_active`` is no longer used to keep users with an
-  unverified e-mail address from loging in.
+  unverified e-mail address from logging in.
 
 - Dropping uniform dependency. Moved uniform templates into
   example project.

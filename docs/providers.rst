@@ -65,7 +65,7 @@ Development callback URL
         }
     }
 
-In the absense of a specified API_URL, the default Agave tenant is
+In the absence of a specified API_URL, the default Agave tenant is
     https://public.agaveapi.co/
 
 Amazon
@@ -188,6 +188,7 @@ You'll need to specify the base URL for your Auth0 domain:
     SOCIALACCOUNT_PROVIDERS = {
         'auth0': {
             'AUTH0_URL': 'https://your.auth0domain.auth0.com',
+            'OAUTH_PKCE_ENABLED': True,
         }
     }
 
@@ -275,7 +276,7 @@ SCOPE:
 REGION:
     Either ``apac``, ``cn``, ``eu``, ``kr``, ``sea``, ``tw`` or ``us``
 
-    Sets the default region to use, can be overriden using query parameters
+    Sets the default region to use, can be overridden using query parameters
     in the URL, for example: ``?region=eu``. Defaults to ``us``.
 
 Bitbucket
@@ -322,6 +323,13 @@ App registration (get your key and secret here)
 CILogon OIDC/OAuth2 Documentation
     https://www.cilogon.org/oidc
 
+Clever
+----
+Single sign-on for education
+
+Clever OAUth2 Documentation
+    https://dev.clever.com/docs/classroom-with-oauth
+
 
 Dataporten
 ----------
@@ -363,6 +371,29 @@ https://developers.digitalocean.com/documentation/oauth/#scopes for details.
                 'read write',
             ],
         }
+    }
+
+
+DingTalk
+------
+
+The DingTalk OAuth2 documentation:
+
+    https://open.dingtalk.com/document/orgapp-server/obtain-identity-credentials
+
+You can optionally specify additional scope to use. If no ``SCOPE`` value
+is set, will use ``openapi`` by default(for Open Platform Account, need
+registration). Other ``SCOPE`` options are: corpid.
+
+.. code-block:: python
+
+    SOCIALACCOUNT_PROVIDERS = {
+        'dingtalk': {
+            'APP': {
+                'client_id': 'xxxx',
+                'secret': 'xxxx',
+           },
+    }
     }
 
 
@@ -415,7 +446,7 @@ Authentication documentation
 Development callback URL
     https://localhost:8000/accounts/drip/login/callback/
 
-Make sure the registed application is active.
+Make sure the registered application is active.
 
 
 Dropbox
@@ -551,7 +582,9 @@ During development set the callback url to:
 In production replace localhost with whatever domain you're hosting your app on.
 
 If your app is writing to certain attributes you need to specify this during the
-creation of the app.
+creation of the app. For a full list of scopes see:
+
+https://developer.exist.io/reference/authentication/oauth2/#scopes
 
 The following Exist settings are available:
 
@@ -559,17 +592,17 @@ The following Exist settings are available:
 
     SOCIALACCOUNT_PROVIDERS = {
         'exist': {
-            'SCOPE': ['read+write'],
+            'SCOPE': ['mood_read', 'health_read', 'productivity_read'],
         }
     }
 
 SCOPE:
-    The default scope is ``read``. If you'd like to change this set the scope to
-    ``read+write``.
+    The default scopes are listed above. For reading additional attributes or writing data see
+    https://developer.exist.io/reference/authentication/oauth2/#scopes.
 
 For more information:
-OAuth documentation: http://developer.exist.io/#oauth2-authentication
-API documentation: http://developer.exist.io/
+OAuth documentation: https://developer.exist.io/reference/authentication/oauth2
+API documentation: https://developer.exist.io/reference/important_values/
 
 
 Facebook
@@ -624,6 +657,7 @@ The following Facebook settings are available:
             'LOCALE_FUNC': 'path.to.callable',
             'VERIFIED_EMAIL': False,
             'VERSION': 'v13.0',
+            'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
         }
     }
 
@@ -794,7 +828,7 @@ clients granted access. To add access for your client, click on the "Create Clie
 button and fill out the form and submit the form.
 
 After creating the client access, click on "View" to reveal your Client ID and
-Shared Key. You can also regenerate the key in an event tha your shared key is
+Shared Key. You can also regenerate the key in an event that your shared key is
 compromised.
 
 Configuring Django
@@ -828,7 +862,7 @@ App registration (get your key and secret here)
     https://gitea.com/user/settings/applications
 
 Development callback URL
-    http://127.0.0.1:8000/accounts/github/login/callback/
+    http://127.0.0.1:8000/accounts/gitea/login/callback/
 
 
 Self-hosted Support
@@ -999,7 +1033,8 @@ Optionally, you can specify the scope to use as follows:
             ],
             'AUTH_PARAMS': {
                 'access_type': 'online',
-            }
+            },
+            'OAUTH_PKCE_ENABLED': True,
         }
     }
 
@@ -1023,6 +1058,18 @@ App registration (get your key and secret here)
 Development callback URL
     http://localhost:8000/accounts/instagram/login/callback/
 
+
+Hubspot
+--------
+
+App registration (get your key and secret here)
+    https://developers.hubspot.com/docs/api/creating-an-app
+
+Authentication documentation
+    https://developers.hubspot.com/docs/api/working-with-oauth
+
+Development callback URL
+    https://localhost:8000/accounts/hubspot/login/callback/
 
 Instagram
 ---------
@@ -1065,8 +1112,8 @@ Development callback URL
 Keycloak
 --------
 
-Creating and Registering the Client
-    https://www.keycloak.org/docs/latest/getting_started/index.html#creating-and-registering-the-client
+Creating a client application
+    https://www.keycloak.org/docs/latest/authorization_services/#_resource_server_create_client
 
 Development callback URL
     http://localhost:8000/accounts/keycloak/login/callback/
@@ -1074,12 +1121,10 @@ Development callback URL
 The following Keycloak settings are available.
 
 KEYCLOAK_URL:
-    The url of your hosted keycloak server, it must end with ``/auth``. For
-    example, you can use: ``https://your.keycloak.server/auth``
+    The url of your hosted keycloak server. For example, you can use: ``https://your.keycloak.server``
 
 KEYCLOAK_URL_ALT:
-    An alternate url of your hosted keycloak server, it must end with ``/auth``. For
-    example, you can use: ``https://your.keycloak.server/auth``
+    An alternate url of your hosted keycloak server. For example, you can use: ``https://your.keycloak.server``
 
     This can be used when working with Docker on localhost, with a frontend and a backend hosted in different containers.
 
@@ -1397,6 +1442,7 @@ Okta
     SOCIALACCOUNT_PROVIDERS = {
         'okta': {
             'OKTA_BASE_URL': 'example.okta.com',
+            'OAUTH_PKCE_ENABLED': True,
         }
     }
 
@@ -1464,6 +1510,54 @@ The OpenID provider can be forced to operate in stateless mode as follows::
                     openid_url='https://steamcommunity.com/openid',
                     stateless=True,
                 )]}}
+
+
+OpenID Connect
+--------------
+
+The OpenID Connect provider provides a dynamic instance for each configured
+server. To expose an OpenID Connect server as an authentication method,
+configuration of one or more servers is required:
+
+.. code-block:: python
+
+    SOCIALACCOUNT_PROVIDERS = {
+        "openid_connect": {
+            "SERVERS": [
+                {
+                    "id": "my-server",  # 30 characters or less
+                    "name": "My Login Server",
+                    "server_url": "https://my.server.example.com",
+                    # Optional token endpoint authentication method.
+                    # May be one of "client_secret_basic", "client_secret_post"
+                    # If omitted, a method from the the server's
+                    # token auth methods list is used
+                    "token_auth_method": "client_secret_basic",
+                    "APP": {
+                        "client_id": "your.service.id",
+                        "secret": "your.service.secret",
+                    },
+                },
+                {
+                    "id": "other-server",  # 30 characters or less
+                    "name": "Other Login Server",
+                    "server_url": "https://other.server.example.com",
+                    "APP": {
+                        "client_id": "your.other.service.id",
+                        "secret": "your.other.service.secret",
+                    },
+                },
+            ]
+        }
+    }
+
+This configuration example will create two independent provider instances,
+``My Login Server`` and ``Other Login Server``.
+
+The OpenID Connect callback URL for each configured server is at
+``/accounts/{id}/login/callback/`` where ``{id}`` is the configured
+server's ``id`` value (``my-server`` or ``other-server`` in the above example).
+
 
 OpenStreetMap
 -------------
@@ -1597,25 +1691,44 @@ Pinterest
 
 The Pinterest OAuth2 documentation:
 
+    # v1  # has been deprecated
     https://developers.pinterest.com/docs/api/overview/#authentication
 
+    # v3  # plan to enforce an end of life on June 30, 2023.
+    https://developers.pinterest.com/docs/redoc/#section/User-Authorization
+
+    # v5
+    https://developers.pinterest.com/docs/getting-started/authentication/
+
 You can optionally specify additional permissions to use. If no ``SCOPE``
-value is set, the Pinterest provider will use ``read_public`` by default.
+value is set, the Pinterest provider will use reading scope by default.
 
 .. code-block:: python
 
     SOCIALACCOUNT_PROVIDERS = {
         'pinterest': {
-            'SCOPE': [
-                'read_public',
-                'read_relationships',
-            ]
+            'SCOPE': ['user_accounts:read'],
+            "API_VERSION": "v5",
         }
     }
 
 SCOPE:
     For a full list of scope options, see
+
+    # v1
     https://developers.pinterest.com/docs/api/overview/#scopes
+
+    # v3
+    https://developers.pinterest.com/docs/redoc/#section/User-Authorization/OAuth-scopes
+
+    # v5
+    https://developers.pinterest.com/docs/getting-started/scopes/
+
+Pocket
+-------------
+
+App registration (get your consumer key here)
+    https://getpocket.com/developer/apps/
 
 QuickBooks
 ----------
@@ -1794,6 +1907,19 @@ Development callback URL
 
 API documentation
     https://api.slack.com/docs/sign-in-with-slack
+
+
+Snapchat
+-----
+
+App registration (get your key and secret here)
+    https://kit.snapchat.com/manage/
+
+Development callback URL
+    http://example.com/accounts/snap/login/callback/
+
+API documentation
+    https://docs.snap.com/docs/snap-kit/login-kit/overview
 
 
 SoundCloud
@@ -2008,6 +2134,50 @@ The configuration is as follows:
 * Secret key, is called "Consumer Secret (API Secret)" on Twitter
 * Key, is not needed, leave blank
 
+Twitter OAuth2
+--------------
+
+You will need to create a Twitter app with OAuth 2.0 enabled and configure the Twitter provider for
+your Django application via the admin interface.
+
+App registration
+****************
+
+To register an app on Twitter you will need a Twitter account. With an account, you
+can create a new app via::
+
+    https://developer.twitter.com/en/portal/dashboard
+
+In the app creation form fill in the development callback URL::
+
+    http://127.0.0.1:8000/accounts/twitter_oauth2/login/callback/
+
+For production use a callback URL such as::
+
+   http://{{yourdomain}}.com/accounts/twitter_oauth2/login/callback/
+
+
+App database configuration through admin
+****************************************
+
+The second part of setting up the Twitter provider requires you to configure
+your Django application. Configuration is done by creating a SocialApp object
+in the admin. Add a social app on the admin page::
+
+    /admin/socialaccount/socialapp/
+
+Use the twitter keys tab of your application to fill in the form. It's located::
+
+    https://developer.twitter.com/en/portal/projects/{project-id}/apps/{app-id}/keys
+
+The configuration is as follows:
+
+* Provider, "Twitter"
+* Name, your pick, suggest "Twitter"
+* Client id, is called "OAuth2.0 Client ID" on Twitter
+* Secret key, is called "OAuth2.0 Client Secret" on Twitter
+* Key, is not needed, leave blank
+
 
 Untappd
 -------
@@ -2108,6 +2278,35 @@ Development callback URL
 Microsoft calls the "client_id" an "Application Id" and it is a UUID. Also,
 the "client_secret" is not created by default, you must edit the application
 after it is created, then click "Generate New Password" to create it.
+
+
+Wahoo
+-----
+
+Register your OAuth2 app here:
+
+    https://developers.wahooligan.com/applications/new
+
+The API documentation can be found here:
+
+    https://cloud-api.wahooligan.com/#introduction
+
+.. code-block:: python
+
+    SOCIALACCOUNT_PROVIDERS = {
+        'wahoo': {
+            'SCOPE': ['user_read'],
+        }
+    }
+
+SCOPE:
+    The default scope is ``user_read`` which allows you to read profile data. If
+    ``SOCIALACCOUNT_QUERY_EMAIL`` is set to True the ``email`` scope is also requested.
+
+    In order to read or write workout history data you must request additional scopes.
+
+    The available scopes are: ``user_read``, ``user_write``, ``workouts_read``, ``workouts_write``,
+    ``offline_data``.
 
 
 Weibo

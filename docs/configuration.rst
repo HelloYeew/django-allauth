@@ -174,11 +174,11 @@ ACCOUNT_PREVENT_ENUMERATION (=True)
   is always sent, regardless of whether or not the account exists. Note that
   there is a slight usability tax to pay because there is no immediate feedback.
   **Warning**: this is a work in progress, password reset is covered, yet,
-   signing up is not.
+  signing up is not.
 
 ACCOUNT_RATE_LIMITS
   In order to be secure out of the box various rate limits are in place. The
-  rate limit mechanism is backed by a Django cache. Hence, rate limitting will
+  rate limit mechanism is backed by a Django cache. Hence, rate limiting will
   not work properly if you are using the `DummyCache`. To disable, set to
   ``{}``. When rate limits are hit the ``429.html`` template is rendered.
   Defaults to::

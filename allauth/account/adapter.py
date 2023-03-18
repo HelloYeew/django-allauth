@@ -93,7 +93,7 @@ class DefaultAccountAdapter(object):
 
     def get_from_email(self):
         """
-        This is a hook that can be overridden to programatically
+        This is a hook that can be overridden to programmatically
         set the 'from' email address for sending emails
         """
         return settings.DEFAULT_FROM_EMAIL
@@ -522,7 +522,7 @@ class DefaultAccountAdapter(object):
             send_email = ratelimit.consume(
                 request,
                 action="confirm_email",
-                key=email_address.email,
+                key=email_address.email.lower(),
                 amount=1,
                 duration=cooldown_period.total_seconds(),
             )
